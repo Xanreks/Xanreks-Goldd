@@ -161,8 +161,8 @@ const CASES = [
 
 const q = new URLSearchParams(location.search);
 const goldNow = parseInt(q.get("g")||"0",10)||0;
-let top = [];
-try{ top = JSON.parse(q.get("top")||"[]"); }catch(e){}
+let topData = [];
+try{ topData = JSON.parse(q.get("top")||"[]"); }catch(e){}
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -189,8 +189,8 @@ $("cases").innerHTML = CASES.map((c,i)=>`
   </div>`).join("");
 
 // топ
-$("toplist").innerHTML = top.length
-  ? top.map((t,i)=>`<div class="t"><div class="n">${i+1}</div><div class="nm">${esc(t[0])}</div><div class="sm">${esc(t[1])} 💰</div></div>`).join("")
+$("toplist").innerHTML = topData.length
+  ? topData.map((t,i)=>`<div class="t"><div class="n">${i+1}</div><div class="nm">${esc(t[0])}</div><div class="sm">${esc(t[1])} 💰</div></div>`).join("")
   : '<div class="empty">Пока никто ничего не выбил</div>';
 
 // навигация
